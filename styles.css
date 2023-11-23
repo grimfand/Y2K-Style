@@ -1,0 +1,176 @@
+*,
+*::after,
+*::before {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+:root {
+	font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+	line-height: 1.4;
+	font-weight: 400;
+	font-synthesis: none;
+	text-rendering: optimizeLegibility;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	-webkit-text-size-adjust: 100%;
+
+	/* defaults */
+	--bkg: var(--bkg-light);
+	--muted: var(--muted-light);
+	--accent: rgb(18, 18, 150);
+	--text: var(--text-light);
+
+	/* box-shadow */
+	--ring: 0 0 0 3px hsl(var(--bkg)), 0 0 0 8px hsl(var(--accent));
+
+	/* typography */
+	--fs--sm: clamp(0.7813rem, 0.7747rem + 0.0326vw, 0.8rem);
+	--fs--md: clamp(0.9375rem, 0.9158rem + 0.1087vw, 1rem);
+	--fs--lg: clamp(1.62rem, 1.5041rem + 0.5793vw, 1.9531rem);
+
+	--fw--bold: 600;
+	--fw--reg: 400;
+
+	/* spacing */
+	--space--xs: clamp(0.5625rem, 0.5408rem + 0.1087vw, 0.625rem);
+	--space--sm: clamp(1.125rem, 1.0815rem + 0.2174vw, 1.25rem);
+	--space--md: clamp(1.6875rem, 1.6223rem + 0.3261vw, 1.875rem);
+	--space--lg: clamp(2.25rem, 2.163rem + 0.4348vw, 2.5rem);
+
+	/* radius */
+	--rounded--sm: 8px;
+	--rounded--md: 12px;
+	--rounded--full: 100vmax;
+}
+
+body {
+	background-color: hsl(var(--muted));
+	color: hsl(var(--text));
+	font-size: var(--fs--sm);
+	font-weight: var(--fw--reg);
+}
+
+main {
+	display: grid;
+	min-height: 100vh;
+	min-height: 100dvh;
+	place-items: center;
+	padding: var(--space--md);
+}
+
+/* utilities */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	line-height: 1.1;
+	text-wrap: balance;
+}
+
+h2 {
+	font-size: var(--fs--lg);
+}
+
+.grid--xs {
+	display: grid;
+	gap: var(--space--xs);
+}
+.grid--sm {
+	display: grid;
+	gap: var(--space--sm);
+}
+.grid--md {
+	display: grid;
+	gap: var(--space--md);
+}
+.grid--lg {
+	display: grid;
+	gap: var(--space--lg);
+}
+.flex--xs {
+	display: flex;
+	gap: var(--space--xs);
+}
+.flex--sm {
+	display: flex;
+	gap: var(--space--sm);
+}
+.flex--md {
+	display: flex;
+	gap: var(--space--md);
+}
+.flex--lg {
+	display: flex;
+	gap: var(--space--lg);
+}
+
+.flex-wrap {
+	flex-wrap: wrap;
+}
+
+ul {
+	margin-left: var(--space--sm);
+}
+
+/* components */
+
+.dashboard {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr 1fr;
+	grid-template-rows: 1fr 1fr 1fr;
+	grid-auto-columns: 1fr;
+	gap: 2px 2px;
+	grid-auto-flow: row;
+	grid-template-areas:
+		'schedule-table profile profile profile'
+		'exercise-table profile profile profile'
+		'calories personal-bests challenges activity-feed';
+	border: 1px solid black;
+	padding: var(--space--xs);
+}
+
+.profile {
+	grid-area: profile;
+	margin-inline: auto;
+	margin-block: auto;
+}
+
+.schedule-table {
+	grid-area: schedule-table;
+}
+
+.exercise-table {
+	grid-area: exercise-table;
+}
+
+.calories {
+	grid-area: calories;
+}
+
+.personal-bests {
+	grid-area: personal-bests;
+}
+
+.challenges {
+	grid-area: challenges;
+}
+
+.activity-feed {
+	grid-area: activity-feed;
+}
+
+.card {
+	border: 2px solid var(--accent);
+}
+
+.card h2 {
+	background: var(--accent);
+	color: white;
+	padding: var(--space--xs);
+	font-size: var(--fs--md);
+	margin-bottom: var(--space--xs);
+}
