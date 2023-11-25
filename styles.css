@@ -6,6 +6,8 @@
 	padding: 0;
 }
 
+@import url('https://fonts.googleapis.com/css2?family=Cute+Font&family=Audiowide&family=Bruno+Ace+SC&display=swap');
+
 :root {
 	font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
 	line-height: 1.4;
@@ -18,38 +20,32 @@
 
 	/* defaults */
 	--bkg: var(--bkg-light);
-	--muted: var(--muted-light);
-	--accent: rgb(18, 18, 150);
-	--text: var(--text-light);
-
-	/* box-shadow */
-	--ring: 0 0 0 3px hsl(var(--bkg)), 0 0 0 8px hsl(var(--accent));
+	--accent: black;
+	--text: rgb(31, 31, 31);
 
 	/* typography */
-	--fs--sm: clamp(0.7813rem, 0.7747rem + 0.0326vw, 0.8rem);
-	--fs--md: clamp(0.9375rem, 0.9158rem + 0.1087vw, 1rem);
-	--fs--lg: clamp(1.62rem, 1.5041rem + 0.5793vw, 1.9531rem);
-
-	--fw--bold: 600;
-	--fw--reg: 400;
+	--step--2: clamp(0.7813rem, 0.7747rem + 0.0326vw, 0.8rem);
+	--step--1: clamp(0.9375rem, 0.9158rem + 0.1087vw, 1rem);
+	--step-0: clamp(1.125rem, 1.0815rem + 0.2174vw, 1.25rem);
+	--step-1: clamp(1.35rem, 1.2761rem + 0.3696vw, 1.5625rem);
+	--step-2: clamp(1.62rem, 1.5041rem + 0.5793vw, 1.9531rem);
+	--step-3: clamp(1.9438rem, 1.7707rem + 0.8652vw, 2.4413rem);
+	--step-4: clamp(2.3325rem, 2.0823rem + 1.2511vw, 3.0519rem);
+	--step-5: clamp(2.7994rem, 2.4461rem + 1.7663vw, 3.815rem);
 
 	/* spacing */
 	--space--xs: clamp(0.5625rem, 0.5408rem + 0.1087vw, 0.625rem);
 	--space--sm: clamp(1.125rem, 1.0815rem + 0.2174vw, 1.25rem);
 	--space--md: clamp(1.6875rem, 1.6223rem + 0.3261vw, 1.875rem);
 	--space--lg: clamp(2.25rem, 2.163rem + 0.4348vw, 2.5rem);
-
-	/* radius */
-	--rounded--sm: 8px;
-	--rounded--md: 12px;
-	--rounded--full: 100vmax;
 }
 
 body {
-	background-color: hsl(var(--muted));
-	color: hsl(var(--text));
-	font-size: var(--fs--sm);
-	font-weight: var(--fw--reg);
+	background-image: url('https://live.staticflickr.com/65535/53355179888_1b7bf55f5f_k.jpg');
+	/* background-repeat: round; */
+	/* background-color: rgb(255, 175, 175); */
+	color: var(--text);
+	font-size: var(--step--2);
 }
 
 main {
@@ -57,7 +53,7 @@ main {
 	min-height: 100vh;
 	min-height: 100dvh;
 	place-items: center;
-	padding: var(--space--md);
+	padding: var(--step--1);
 }
 
 /* utilities */
@@ -69,10 +65,12 @@ h5,
 h6 {
 	line-height: 1.1;
 	text-wrap: balance;
+	color: black;
 }
 
 h2 {
-	font-size: var(--fs--lg);
+	font-size: var(--step-5);
+	font-family: 'Racing Sans One';
 }
 
 .grid--xs {
@@ -116,61 +114,107 @@ ul {
 	margin-left: var(--space--sm);
 }
 
+table {
+	width: 100%;
+}
+
+th,
+td {
+	border: 2px solid var(--accent);
+	padding: var(--space--xs);
+	transition: 0.2s ease-in-out;
+}
+
+ul {
+	padding: var(--space--xs);
+}
+
+td:hover {
+	background: var(--accent);
+	color: white;
+}
+
 /* components */
 
 .dashboard {
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr 1fr;
-	grid-template-rows: 1fr 1fr 1fr;
+	grid-template-rows: auto;
 	grid-auto-columns: 1fr;
-	gap: 2px 2px;
+	gap: var(--space--xs) var(--space--xs);
 	grid-auto-flow: row;
 	grid-template-areas:
 		'schedule-table profile profile profile'
 		'exercise-table profile profile profile'
 		'calories personal-bests challenges activity-feed';
-	border: 1px solid black;
 	padding: var(--space--xs);
 }
 
 .profile {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: var(--space--xs);
 	grid-area: profile;
-	margin-inline: auto;
-	margin-block: auto;
+	padding: var(--space--md);
+	text-align: center;
+}
+
+.profile p {
+	font-size: var(--step-1);
+}
+
+.image {
+	width: 500px;
 }
 
 .schedule-table {
 	grid-area: schedule-table;
+	background: url('https://live.staticflickr.com/65535/53354100362_6513d220d2_z.jpg');
 }
 
 .exercise-table {
 	grid-area: exercise-table;
+	background: url('https://live.staticflickr.com/65535/53355196438_c4d04d6705_z.jpg');
 }
 
 .calories {
 	grid-area: calories;
+	background: url('https://live.staticflickr.com/65535/53354120992_a281cfee1e_c.jpg');
+	background-position: right;
 }
 
 .personal-bests {
 	grid-area: personal-bests;
+	background: url('https://live.staticflickr.com/65535/53354120992_a281cfee1e_c.jpg');
+	background-position: top;
 }
 
 .challenges {
 	grid-area: challenges;
+	background: url('https://live.staticflickr.com/65535/53354120992_a281cfee1e_c.jpg');
+	background-position: left;
 }
 
 .activity-feed {
 	grid-area: activity-feed;
+	background: url('https://live.staticflickr.com/65535/53354120992_a281cfee1e_c.jpg');
+	background-position: bottom;
 }
 
 .card {
 	border: 2px solid var(--accent);
+	max-height: fit-content;
+	font-size: var(--step--1);
 }
 
 .card h2 {
 	background: var(--accent);
 	color: white;
 	padding: var(--space--xs);
-	font-size: var(--fs--md);
-	margin-bottom: var(--space--xs);
+	font-size: var(--step-0);
+	font-family: 'Audiowide';
+}
+.card div {
+	padding: var(--space--xs);
 }
