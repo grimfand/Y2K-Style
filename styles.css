@@ -6,10 +6,13 @@
 	padding: 0;
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Cute+Font&family=Audiowide&family=Bruno+Ace+SC&display=swap');
+/* fonts */
+
+@import url('https://fonts.googleapis.com/css2?family=Racing+Sans+One&family=Rampart+One&family=Cute+Font&family=Cute+Font&family=Audiowide&family=Bruno+Ace+SC&display=swap');
 
 :root {
-	font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+	font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+		Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 	line-height: 1.4;
 	font-weight: 400;
 	font-synthesis: none;
@@ -18,9 +21,9 @@
 	-moz-osx-font-smoothing: grayscale;
 	-webkit-text-size-adjust: 100%;
 
-	/* defaults */
-	--bkg: var(--bkg-light);
+	/* colors */
 	--accent: black;
+	--second: white;
 	--text: rgb(31, 31, 31);
 
 	/* typography */
@@ -42,8 +45,9 @@
 
 body {
 	background-image: url('https://live.staticflickr.com/65535/53355179888_1b7bf55f5f_k.jpg');
-	/* background-repeat: round; */
-	/* background-color: rgb(255, 175, 175); */
+	background-position: center;
+	/* background-repeat: no-repeat; */
+	background-size: cover;
 	color: var(--text);
 	font-size: var(--step--2);
 }
@@ -65,7 +69,7 @@ h5,
 h6 {
 	line-height: 1.1;
 	text-wrap: balance;
-	color: black;
+	color: var(--accent);
 }
 
 h2 {
@@ -131,75 +135,75 @@ ul {
 
 td:hover {
 	background: var(--accent);
-	color: white;
+	color: var(--second);
 }
 
 /* components */
 
 .dashboard {
 	display: grid;
-	grid-template-columns: 1fr 1fr 1fr 1fr;
+	grid-template-columns: 1fr 1fr 1fr;
 	grid-template-rows: auto;
 	grid-auto-columns: 1fr;
 	gap: var(--space--xs) var(--space--xs);
 	grid-auto-flow: row;
 	grid-template-areas:
-		'schedule-table profile profile profile'
-		'exercise-table profile profile profile'
-		'calories personal-bests challenges activity-feed';
+		'schedule-table profile profile'
+		'exercise-table profile profile'
+		'exercise-table activity-feed activity-feed'
+		'calories personal-bests challenges';
 	padding: var(--space--xs);
 }
 
 .profile {
 	display: flex;
 	flex-direction: column;
-	align-items: center;
 	gap: var(--space--xs);
+	align-items: center;
 	grid-area: profile;
 	padding: var(--space--md);
 	text-align: center;
 }
 
 .profile p {
-	font-size: var(--step-1);
+	font-size: var(--step-3);
+	text-wrap: balance;
+	font-family: 'Rampart One';
 }
 
 .image {
-	width: 500px;
+	width: 300px;
 }
 
 .schedule-table {
 	grid-area: schedule-table;
-	background: url('https://live.staticflickr.com/65535/53354100362_6513d220d2_z.jpg');
+	background: url('https://live.staticflickr.com/65535/53354100362_6513d220d2_c.jpg');
 }
 
 .exercise-table {
 	grid-area: exercise-table;
 	background: url('https://live.staticflickr.com/65535/53355196438_c4d04d6705_z.jpg');
+	height: fit-content;
 }
 
 .calories {
 	grid-area: calories;
-	background: url('https://live.staticflickr.com/65535/53354120992_a281cfee1e_c.jpg');
-	background-position: right;
+}
+
+.calories-container {
+	padding: var(--space--xs);
 }
 
 .personal-bests {
 	grid-area: personal-bests;
-	background: url('https://live.staticflickr.com/65535/53354120992_a281cfee1e_c.jpg');
-	background-position: top;
 }
 
 .challenges {
 	grid-area: challenges;
-	background: url('https://live.staticflickr.com/65535/53354120992_a281cfee1e_c.jpg');
-	background-position: left;
 }
 
 .activity-feed {
 	grid-area: activity-feed;
-	background: url('https://live.staticflickr.com/65535/53354120992_a281cfee1e_c.jpg');
-	background-position: bottom;
 }
 
 .card {
@@ -208,13 +212,44 @@ td:hover {
 	font-size: var(--step--1);
 }
 
+.card-black {
+	padding: var(--space--sm);
+	max-height: fit-content;
+	font-size: var(--step--1);
+	background: var(--accent);
+	color: var(--second);
+}
+
+.card-black h2 {
+	font-size: var(--step-3);
+	background: var(--second);
+	background: linear-gradient(
+		to top right,
+		#f7ffab 0%,
+		#ff9eff 50%,
+		#6e69ff 100%
+	);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
+
 .card h2 {
 	background: var(--accent);
-	color: white;
+	color: var(--second);
 	padding: var(--space--xs);
-	font-size: var(--step-0);
+	font-size: var(--step-1);
 	font-family: 'Audiowide';
 }
 .card div {
 	padding: var(--space--xs);
+}
+
+@media screen and (max-width: 760px) {
+	.dashboard {
+		display: flex;
+		flex-direction: column;
+	}
+	.image {
+		width: 270px;
+	}
 }
